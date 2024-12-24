@@ -1,13 +1,11 @@
-import { useState } from "react"
 import TodoItem from "./TodoItem"
 
-const TodoList = ({ tasks }) => {
-  
+const TodoList = ({ tasks, onDeleteTask }) => {
   
   return (
     <ul className="task-list">
-      {tasks.map((task, index) => (
-        <TodoItem key={index} task={task} />
+      {tasks.map((task) => (
+        <TodoItem key={task.id} task={task} onDeleteTask={onDeleteTask} />
       ))}
     </ul>
   )

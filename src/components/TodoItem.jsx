@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const TodoItem = ({ key, task }) => {
+const TodoItem = ({ task, onDeleteTask }) => {
+  const [isDeleted, setIsDeleted] = useState(false)
+
+  const handleDeleteTask = () => {
+    setIsDeleted(true)
+    setTimeout(() => {
+      onDeleteTask(task.id)
+    }, 300)
+  }
+
   return (
-    <li key={key}>
-        <span>{task}</span>
-        <button>Delete</button>
+    <li className={`task-item  
+      ${isDeleted ? 'deleted' : ''}`} >
+        <span>{task.text}</span>
+        <button onClick={handleDeleteTask}>Delete</button>
     </li>
   )
 }

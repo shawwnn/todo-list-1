@@ -6,22 +6,35 @@ import TodoList from "./components/todoList"
 
 function App() {
   const [tasks, setTasks] = useState([
-    'Finish react project',
-    'Buy dinner',
-    'Get the rewards',
+    {id: 1, text: 'Finish react project'},
+    {id: 2, text: 'Buy dinner'},
+    {id: 3, text: 'Get the rewards'},
   ])
 
-  const addTask = (task) =>  {
-    const newTasks = [...tasks, task]
+  const addTask = (taskText) =>  {
+    if (taskText.trim() === '') return
+    
+    const newTask = {
+      id: Date.now(),
+      text: taskText,
+    }
+
+    const newTasks = [...tasks, 
+      newTask
+    ]
     setTasks(newTasks);
-    console.log(tasks);
+  }
+
+  const deleteTask = (taskId) => {
+    const filteredTasks = tasks.filter((task) => task.id !== taskId) 
+    setTasks(filteredTasks)
   }
 
   return (
     <div className="todo-container">
       <Header />
       <TodoInput onAddTask={addTask} />
-      <TodoList tasks={tasks} />
+      <TodoList onDeleteTask={deleteTask} tasks={tasks} />
       
     </div>
   )

@@ -110,3 +110,12 @@ body {
 .task-list button:hover {
   color: #c62828; /* Darker red on hover */
 }
+
+.task-item {
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+.task-item.deleted {
+  transform: scale(0.9);
+  opacity: 0;
+}

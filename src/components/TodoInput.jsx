@@ -2,13 +2,12 @@ import React from 'react'
 import { useState } from 'react'
 
 const TodoInput = ({ onAddTask }) => {
-  const [task, setTask] = useState('')
+  const [taskText, setTaskText] = useState('')
 
   const handleAddTask = (e) => {
     e.preventDefault()
-    onAddTask(task);
-    setTask('')
-
+    onAddTask(taskText);
+    setTaskText('')
   }
   
   return (
@@ -17,8 +16,8 @@ const TodoInput = ({ onAddTask }) => {
     >
 			<input 
         type="text"
-        value={task}
-        onChange={(e) => setTask(e.target.value)}
+        value={taskText}
+        onChange={(e) => setTaskText(e.target.value)}
 				placeholder='Enter your task'
 			/>
 			<button type="submit">Add</button>
