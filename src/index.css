@@ -119,3 +119,88 @@ body {
   transform: scale(0.9);
   opacity: 0;
 }
+
+/* Search Bar 12/15/2025 */ 
+.search-container {
+  width: 100%; /* Full width of the container */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between elements */
+  background-color: #565869; /* Same background color as the input */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Padding around the content */
+  margin-bottom: 20px;
+  border: 2px solid #565869; /* Border color same as the input */
+  height: 45px; /* Same height as TodoInput */
+}
+
+/* Search Input */
+/* Search Bar */
+.search-container {
+  width: 100%; /* Full width of the container */
+  display: flex;
+  align-items: center;
+  gap: 10px; Space between elements */
+  background-color: #565869; /* Same background color as the input */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Padding around the content */
+  margin-bottom: 20px;
+  border: 2px solid #565869; /* Border color same as the input */
+  height: 45px; /* Same height as TodoInput */
+}
+
+/* Search Input */
+.search-container input {
+  flex-grow: 1; /* Take all available space */
+  /* padding: 10px; */
+  border: 2px solid #565869; /* Gray border */
+  background-color: #565869; /* Same gray background as TodoInput */
+  color: #ffffff; /* White text */
+  border-radius: 5px; /* Rounded corners */
+  outline: none;
+  font-size: 1em; /* Same font size as TodoInput */
+  height: 100%; /* Fill the height of the container */
+}
+
+/* Placeholder text style */
+.search-container input::placeholder {
+  color: #b3b3b3; /* Light gray placeholder */
+}
+
+/* Input field focus state */
+.search-container input:focus {
+  /* border-color: #0da37f; /* Green color when focused */
+}
+
+/* Search icon */
+.search-container .search-icon {
+  color: #b3b3b3; /* Light gray search icon */
+  font-size: 1.2em; /* Slightly larger than the input font size */
+}
+
+/* Cancel (X) button */
+.search-container button {
+  background-color: #b3b3b3; /* Lighter background for the cancel button */
+  border-radius: 50%; /* Circular button */
+  padding: 5px;
+  font-size: 1.2em; /* Make the '×' button larger */
+  color: #343541; /* Dark color for better contrast */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  height: 30px; /* Fixed height to match button size */
+  width: 30px; /* Fixed width for circular button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Cancel button hover effect */
+.search-container button:hover {
+  background-color: #888888; /* Slightly darker on hover */
+}
+
+/* Icon inside the button */
+.search-container button:focus {
+  outline: none;
+}

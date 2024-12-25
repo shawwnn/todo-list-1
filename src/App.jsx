@@ -2,6 +2,7 @@ import { useState } from "react"
 import Header from "./components/Header"
 import TodoInput from "./components/TodoInput"
 import TodoList from "./components/todoList"
+import TodoSearch from "./components/TodoSearch"
 
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
   return (
     <div className="todo-container">
       <Header />
+      <TodoSearch />
       <TodoInput
         editingTaskId={editingTaskId}
         tasks={tasks}
