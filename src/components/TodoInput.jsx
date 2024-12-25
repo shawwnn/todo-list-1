@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 
-const TodoInput = ({ onAddTask, editingTaskId, tasks, onSaveTask, taskText, setTaskText }) => {
+const TodoInput = ({ editingTaskId, tasks, onSaveTask, taskText, setTaskText }) => {
   const handleAddTask = (e) => {
     e.preventDefault()
     if(editingTaskId !== null) {

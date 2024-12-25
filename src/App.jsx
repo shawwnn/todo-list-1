@@ -36,7 +36,7 @@ function App() {
     if (taskText.trim() === '') return
     if (id !== null) {
       const updatedTasks = tasks.map((task) => 
-        task.id === id ? {...task, taskText} : task
+        task.id === id ? {...task, text: taskText} : task
       )
       setTasks(updatedTasks)
     } else {
@@ -61,7 +61,7 @@ function App() {
   return (
     <div className="todo-container">
       <Header />
-      <TodoInput onAddTask={addTask} 
+      <TodoInput
         editingTaskId={editingTaskId}
         tasks={tasks}
         onSaveTask={saveTask}
