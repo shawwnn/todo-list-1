@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 
-const TodoInput = ({ onAddTask }) => {
-  const [taskText, setTaskText] = useState('')
-
+const TodoInput = ({ editingTaskId, tasks, onSaveTask, taskText, setTaskText }) => {
   const handleAddTask = (e) => {
     e.preventDefault()
-    onAddTask(taskText);
-    setTaskText('')
+    if(editingTaskId !== null) {
+      onSaveTask(editingTaskId, taskText)
+    } else {
+      onSaveTask(null, taskText)
+    }
   }
+
+  useEffect(() => {
+    if (editingTaskId !== null){
+      const taskToEdit = tasks.find((task) => task.id === editingTaskId)
+      if (taskToEdit) setTaskText(taskToEdit.text)
+    }
+  }, [editingTaskId, tasks])
+  
   
   return (
     <form className="task-input" 
@@ -20,7 +29,10 @@ const TodoInput = ({ onAddTask }) => {
         onChange={(e) => setTaskText(e.target.value)}
 				placeholder='Enter your task'
 			/>
-			<button type="submit">Add</button>
+			<button type="submit">
+        {/* Add */}
+        {editingTaskId !== null ? 'Edit' : 'Add'}
+      </button>
 			
     </form>
   )
