@@ -1,21 +1,19 @@
 import React from 'react'
 
-const TodoSearch = () => {
+const TodoSearch = ({ searchQuery, onSearchChange, onClearSearch}) => {
   return (
-		<>
-			{/* Search Bar */}
-    	<div className="search-container">
-    		<input
-      		type="text"
-      		// value={searchQuery}
-      		// onChange={handleSearchChange}
-      		placeholder="Search tasks..."
-    		/>
-    		<button 
-					// onClick={clearSearch}
-				>×</button>
-  		</div>
-		</>
+		<div className="search-container">
+			<i className="search-icon fas fa-search"></i>
+			<input
+				type="text"
+				value={searchQuery}
+				onChange={onSearchChange}
+				placeholder="Search tasks..."
+			/>
+			<button 
+				onClick={onClearSearch}
+			>×</button>
+		</div>
   )
 }
 

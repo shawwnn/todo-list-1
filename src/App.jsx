@@ -12,25 +12,13 @@ function App() {
     {id: 3, text: 'Get the rewards'},
   ])
   const [taskText, setTaskText] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
 
   const [editingTaskId, setEditingTaskId] = useState(null)
 
-  const addTask = (taskText) =>  {
-    if (taskText.trim() === '') return
-    
-    const newTask = {
-      id: Date.now(),
-      text: taskText,
-    }
-
-    const newTasks = [...tasks, 
-      newTask
-    ]
-    setTasks(newTasks);
-  }
-
   const editTask = (id) => {
     setEditingTaskId(id)
+    setSearchQuery('')
   }
 
   const saveTask = (id, taskText) => {
@@ -51,28 +39,50 @@ function App() {
     }
     setEditingTaskId(null)
     setTaskText('')
+    setSearchQuery('')
   }
   
   const deleteTask = (taskId) => {
-    const filteredTasks = tasks.filter((task) => task.id !== taskId) 
-    setTasks(filteredTasks)
+    const remainingTasks = tasks.filter((task) => task.id !== taskId) 
+    setTasks(remainingTasks)
+    setTaskText('')
+    setSearchQuery('')
+  }
+
+  const searchChange = (e) => {
+    setSearchQuery(e.target.value)
+    setTaskText('')
+  }
+
+  const clearSearch = (e) => {
+    setSearchQuery('')
     setTaskText('')
   }
 
   return (
     <div className="todo-container">
       <Header />
-      <TodoSearch />
+      <TodoSearch 
+        searchQuery={searchQuery} 
+        onSearchChange={searchChange}
+        onClearSearch={clearSearch}
+      />
       <TodoInput
         editingTaskId={editingTaskId}
         tasks={tasks}
         onSaveTask={saveTask}
         taskText={taskText}
         setTaskText={setTaskText}
+        
       />
       
   
-      <TodoList onDeleteTask={deleteTask} tasks={tasks} onEditTask={editTask} />
+      <TodoList 
+        onDeleteTask={deleteTask} 
+        tasks={tasks} 
+        onEditTask={editTask} 
+        searchQuery={searchQuery}
+      />
       
     </div>
   )
