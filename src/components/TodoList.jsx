@@ -1,6 +1,6 @@
 import TodoItem from "./TodoItem"
 
-const TodoList = ({ tasks, onDeleteTask, onEditTask, searchQuery }) => {
+const TodoList = ({ tasks, onDeleteTask, onEditTask, searchQuery, onToggleCompletion }) => {
   const filteredTasks = tasks.filter((task) => 
     searchQuery === '' || task.text.toLowerCase().includes(searchQuery.toLowerCase())
   )
@@ -11,6 +11,7 @@ const TodoList = ({ tasks, onDeleteTask, onEditTask, searchQuery }) => {
         <TodoItem key={task.id} task={task} 
           onDeleteTask={onDeleteTask} 
           onEditTask={onEditTask}
+          onToggleCompletion={onToggleCompletion}
         />
       ))}
     </ul>

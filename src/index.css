@@ -115,9 +115,33 @@ body {
   transition: transform 0.1s ease, opacity 0.1s ease;
 }
 
-.task-item.deleted {
+.task-item.fading-out {
   transform: scale(0.9);
   opacity: 0;
+}
+
+/* Style for the checkbox */
+.task-item input[type="checkbox"] {
+  margin-right: 10px;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  accent-color: #4caf50; /* Green accent for checkbox */
+}
+
+button:disabled {
+  /*background-color: #a0a0a0; /* Greyed-out color */
+  /*cursor: not-allowed; /* Show the 'not-allowed' cursor */
+  opacity: 0.6; /* Make it slightly transparent */
+  pointer-events: none; /* Disable all pointer events, including hover */
+}
+
+/* Style when the task is completed */
+.task-item.completed {
+  /*text-decoration: line-through; /* Strikethrough */
+  color: #888; /* Dim the text color */
+  background-color: #3c3d40; /* Lighter background for completed tasks */
+  opacity:0.4
 }
 
 /* Search Bar 12/15/2025 */ 

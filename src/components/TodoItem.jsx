@@ -1,22 +1,39 @@
 import React, { useState } from 'react'
 
-const TodoItem = ({ task, onDeleteTask, onEditTask }) => {
-  const [isDeleted, setIsDeleted] = useState(false)
+const TodoItem = ({ task, onDeleteTask, onEditTask, onToggleCompletion }) => {
+  const [isFadingOut, setIsFadingOut] = useState(false)
 
-  const handleDeleteTask = () => {
-    setIsDeleted(true)
+  const handleDeleteTask = (e) => {
+    e.stopPropagation()
+    setIsFadingOut(true)
     setTimeout(() => {
       onDeleteTask(task.id)
     }, 155)
   }
 
+  const handleEditTask = (e) => {
+    if(e.target.type === 'checkbox' || e.target.tagName === 'BUTTON')  return
+    onEditTask(task.id)
+  }
+
   return (
     <li className={`task-item  
-      ${isDeleted ? 'deleted' : ''}`} 
-      onClick={() => {onEditTask(task.id)}}
+      ${isFadingOut ? 'fading-out' : ''}
+      ${task.isCompleted ? 'completed' : ''}`} 
+
+      onClick={handleEditTask}
     >
-        <span>{task.text}</span>
-        <button onClick={handleDeleteTask}>Delete</button>
+      <input type="checkbox" 
+        checked={task.isCompleted}
+        onChange={(e) => {
+          e.stopPropagation()
+          onToggleCompletion(task.id)}}
+        />
+      <span>{task.text}</span>
+      <button 
+        onClick={handleDeleteTask}
+        disabled={task.isCompleted}
+      >Delete</button>
     </li>
   )
 }
