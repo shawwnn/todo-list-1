@@ -23,6 +23,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   width: 360px;
   padding: 20px;
+  margin: relative;
 }
 
 /* Header */
@@ -227,4 +228,42 @@ button:disabled {
 /* Icon inside the button */
 .search-container button:focus {
   outline: none;
+}
+
+/* todo plus modal button */ 
+.todo-plus-button {
+  position: absolute;
+  bottom: 3%;
+  right: 10%;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-task-container {
+  display: flex;
+  justify-content: center;
+  /* margin: 20px 0; */
+  position: relative;
+}
+
+.todo-plus-button:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.todo-plus-button i {
+  font-size: 36px;
+  color: #666;
 }

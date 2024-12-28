@@ -1,9 +1,9 @@
 import { useState } from "react"
 import Header from "./components/Header"
-import TodoInput from "./components/TodoInput"
+// import TodoInput from "./components/TodoInput"
 import TodoList from "./components/todoList"
 import TodoSearch from "./components/TodoSearch"
-
+import AddEditTodoModal from "./components/AddEditTodoModal"
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -20,11 +20,12 @@ function App() {
     { id: 11, text: 'Prepare dinner', isCompleted: false },
   ]);
 
-  const [taskText, setTaskText] = useState('')
+  // const [taskText, setTaskText] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
-  // const [isCompleted, setIsCompleted] = useState(false)
-
   const [editingTaskId, setEditingTaskId] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+
 
   const editTask = (id) => {
     const selectedTask = tasks.find((task) => task.id === id);
@@ -35,11 +36,21 @@ function App() {
 
     setEditingTaskId(id)
     setSearchQuery('')
-    setTaskText(selectedTask.text); 
+    // setTaskText(selectedTask.text); 
+    setIsModalOpen(true);
   }
 
   const saveTask = (id, taskText) => {
     if (taskText.trim() === '') return
+
+    if (taskText === tasks.find(
+      task => task.id === editingTaskId?.text)?.text) {
+      setIsModalOpen(false)
+      setEditingTaskId(null)
+      return
+    }
+  
+
     if (id !== null) {
       const updatedTasks = tasks.map((task) => 
         task.id === id ? {...task, text: taskText} : task
@@ -55,25 +66,25 @@ function App() {
       setTasks(newTasks)
     }
     setEditingTaskId(null)
-    setTaskText('')
     setSearchQuery('')
+    setIsModalOpen(false)
   }
   
   const deleteTask = (taskId) => {
     const remainingTasks = tasks.filter((task) => task.id !== taskId) 
     setTasks(remainingTasks)
-    setTaskText('')
+    // setTaskText('')
     setSearchQuery('')
   }
 
   const searchChange = (e) => {
     setSearchQuery(e.target.value)
-    setTaskText('')
+    // setTaskText('')
   }
 
   const clearSearch = (e) => {
     setSearchQuery('')
-    setTaskText('')
+    // setTaskText('')
   }
 
   const toggleCompletion = (taskId) => {
@@ -81,7 +92,7 @@ function App() {
       task.id === taskId ? {...task, isCompleted: !task.isCompleted } : task
     )
     setTasks(updatedTasks)
-    setTaskText('')
+    // setTaskText('')
   }
 
   return (
@@ -92,15 +103,27 @@ function App() {
         onSearchChange={searchChange}
         onClearSearch={clearSearch}
       />
-      <TodoInput
+      {/* <TodoInput
         editingTaskId={editingTaskId}
         tasks={tasks}
         onSaveTask={saveTask}
         taskText={taskText}
         setTaskText={setTaskText}
         
-      />
+      /> */}
+      {/* <div className="add-task-container"> */}
+        <button onClick={() => setIsModalOpen(true)} className="todo-plus-button">
+          +
+        </button>
+      {/* </div> */}
       
+      <AddEditTodoModal
+        isOpen={isModalOpen}
+        setIsOpen={setIsModalOpen}
+        task={tasks.find((task) => task.id === editingTaskId)} // Find the task by id
+        onSave={saveTask}
+      />
+
   
       <TodoList 
         onDeleteTask={deleteTask} 
