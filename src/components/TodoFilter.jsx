@@ -15,7 +15,13 @@ const TodoFilter = ({ selectedFilter, setSelectedFilter}) => {
   return (
     <div className="filter-container">
 			<button className="filter-button" onClick={toggleFilterDropdown}>
-				{selectedFilter} <span className="arrow">{isFilterOpen ? '^' : 'v'}</span>
+				{selectedFilter} <span className="arrow">
+					{isFilterOpen ?
+						<i class="fa fa-caret-up" aria-hidden="true"></i> :
+						<i class="fa fa-caret-down" aria-hidden="true"></i>
+					}
+				</span>
+				
 			</button>
 			{isFilterOpen && (
 				<ul className="filter-menu">
