@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
+// import TodoFilter from './TodoFilter'
 
 const TodoInput = ({ editingTaskId, tasks, onSaveTask, taskText, setTaskText }) => {
   const handleAddTask = (e) => {
@@ -20,21 +21,24 @@ const TodoInput = ({ editingTaskId, tasks, onSaveTask, taskText, setTaskText }) 
   
   
   return (
-    <form className="task-input" 
-      onSubmit={handleAddTask}
-    >
-			<input 
-        type="text"
-        value={taskText}
-        onChange={(e) => setTaskText(e.target.value)}
-				placeholder='Enter your task'
-			/>
-			<button type="submit">
-        {/* Add */}
-        {editingTaskId !== null ? 'Edit' : 'Add'}
-      </button>
-			
-    </form>
+    <>
+      <form className="task-input" 
+        onSubmit={handleAddTask}
+      >
+        <input 
+          type="text"
+          value={taskText}
+          onChange={(e) => setTaskText(e.target.value)}
+          placeholder='Enter your task'
+        />
+        <button type="submit">
+          {/* Add */}
+          {editingTaskId !== null ? 'Edit' : 'Add'}
+        </button>
+        
+      </form>
+      {/* <TodoFilter /> */}
+    </>
   )
 }
 

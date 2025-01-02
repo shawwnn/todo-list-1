@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import '../AddEditTodoModal.css'
+import '../css/addedittodomodal.css'
 
 const AddEditTodoModal = ({ isOpen, setIsOpen, task, onSave }) => {
 	const [text, setText] = useState(task ? task.text : '')
@@ -10,7 +10,6 @@ const AddEditTodoModal = ({ isOpen, setIsOpen, task, onSave }) => {
 
 	const handleSave = () => {
 		onSave(task.id, text)
-		// handleClose()
 	}
 
   useEffect(() => {

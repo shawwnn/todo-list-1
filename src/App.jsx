@@ -1,19 +1,19 @@
 import { useState } from "react"
 import Header from "./components/Header"
-// import TodoInput from "./components/TodoInput"
 import TodoList from "./components/todoList"
 import TodoSearch from "./components/TodoSearch"
 import AddEditTodoModal from "./components/AddEditTodoModal"
+import TodoFilter from "./components/TodoFilter"
 
 function App() {
   const [tasks, setTasks] = useState([
-    { id: 1, text: 'Finish react project', isCompleted: false },
+    { id: 1, text: 'Finish react project', isCompleted: true },
     { id: 2, text: 'Buy dinner', isCompleted: false },
     { id: 3, text: 'Get the rewards', isCompleted: false },
     { id: 4, text: 'Clean the house', isCompleted: false },
     { id: 5, text: 'Prepare meeting notes', isCompleted: false },
     { id: 6, text: 'Go for a walk', isCompleted: false },
-    { id: 7, text: 'Read a book', isCompleted: false },
+    { id: 7, text: 'Read the book', isCompleted: true },
     { id: 8, text: 'Organize the workspace', isCompleted: false },
     { id: 9, text: 'Attend the conference', isCompleted: false },
     { id: 10, text: 'Reply to emails', isCompleted: false },
@@ -24,6 +24,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('')
   const [editingTaskId, setEditingTaskId] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedFilter, setSelectedFilter] = useState('ALL')
 
 
 
@@ -98,19 +99,12 @@ function App() {
   return (
     <div className="todo-container">
       <Header />
+      <TodoFilter selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter}/>
       <TodoSearch 
         searchQuery={searchQuery} 
         onSearchChange={searchChange}
         onClearSearch={clearSearch}
       />
-      {/* <TodoInput
-        editingTaskId={editingTaskId}
-        tasks={tasks}
-        onSaveTask={saveTask}
-        taskText={taskText}
-        setTaskText={setTaskText}
-        
-      /> */}
       {/* <div className="add-task-container"> */}
         <button onClick={() => setIsModalOpen(true)} className="todo-plus-button">
           +
@@ -130,6 +124,7 @@ function App() {
         tasks={tasks} 
         onEditTask={editTask} 
         searchQuery={searchQuery}
+        selectedFilter={selectedFilter}
         onToggleCompletion={toggleCompletion}
       />
       
