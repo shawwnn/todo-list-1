@@ -24,7 +24,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('')
   const [editingTaskId, setEditingTaskId] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedFilter, setSelectedFilter] = useState('ALL')
+  const [selectedFilter, setSelectedFilter] = useState('All')
 
 
 
