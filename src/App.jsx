@@ -61,6 +61,7 @@ function App() {
       const newTask = {
         id: Date.now(),
         text: taskText,
+        isCompleted: false,
       }
 
       const newTasks = ((prevTasks) =>  [...prevTasks, newTask])
@@ -116,6 +117,7 @@ function App() {
         setIsOpen={setIsModalOpen}
         task={tasks.find((task) => task.id === editingTaskId)} // Find the task by id
         onSave={saveTask}
+        editingTaskId={editingTaskId}
       />
 
   
