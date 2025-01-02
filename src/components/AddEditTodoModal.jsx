@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../css/addedittodomodal.css'
 
-const AddEditTodoModal = ({ isOpen, setIsOpen, task, onSave }) => {
+const AddEditTodoModal = ({ isOpen, setIsOpen, task, onSave, editingTaskId }) => {
 	const [text, setText] = useState(task ? task.text : '')
 
 	const handleClose = () => {
