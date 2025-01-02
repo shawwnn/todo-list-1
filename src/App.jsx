@@ -61,6 +61,7 @@ function App() {
       const newTask = {
         id: Date.now(),
         text: taskText,
+        isCompleted: false,
       }
 
       const newTasks = ((prevTasks) =>  [...prevTasks, newTask])

@@ -9,7 +9,13 @@ const AddEditTodoModal = ({ isOpen, setIsOpen, task, onSave }) => {
 	}
 
 	const handleSave = () => {
-		onSave(task.id, text)
+		if (!task && editingTaskId === null) {
+			// If task doesn't exist and there's no editingTaskId, this means it's an Add Task action 
+			onSave(null, text);
+		} else {
+			// Proceed with saving the task
+			onSave(task.id, text)
+		}
 	}
 
   useEffect(() => {
