@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Header from "./components/Header"
 import TodoList from "./components/todoList"
 import TodoSearch from "./components/TodoSearch"
 import AddEditTodoModal from "./components/AddEditTodoModal"
 import TodoFilter from "./components/TodoFilter"
+import axios from "axios"
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -19,6 +20,8 @@ function App() {
     { id: 10, text: 'Reply to emails', isCompleted: false },
     { id: 11, text: 'Prepare dinner', isCompleted: false },
   ]);
+
+  
 
   // const [taskText, setTaskText] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
