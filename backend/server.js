@@ -2,20 +2,19 @@ const express = require('express')
 const mongoose = require ('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+require('dotenv').config()
 
 // App Initialization
 
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT
 
 // Middleware 
 app.use(cors())
 app.use(bodyParser.json())
 
 // MongoDB Connection
-// const mongoURI = 'mongodb+srv://shangellapuz:FtXFl39mIjZOV7jh@clusteramazonsingapore.cc7zf.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAmazonSingapore'
-const mongoURI = 'mongodb+srv://shangellapuz:FtXFl39mIjZOV7jh@clusteramazonsingapore.cc7zf.mongodb.net/Task?retryWrites=true&w=majority&appName=ClusterAmazonSingapore';
-
+const mongoURI = process.env.MONGO_URI
 
 mongoose.connect(mongoURI)
   .then(() => console.log('MongoDB connected'))
@@ -61,8 +60,8 @@ app.post('/tasks/bulk-insert', async (req, res) => {
         // { text: 'Buy dinner', isCompleted: false },
         // { text: 'Get the rewards', isCompleted: false },
         // { text: 'Clean the house', isCompleted: false },
-        { text: 'Prepare meeting notes', isCompleted: false },
-        { text: 'Go for a walk', isCompleted: false },
+        // { text: 'Prepare meeting notes', isCompleted: false },
+        // { text: 'Go for a walk', isCompleted: false },
         // { text: 'Read the book', isCompleted: true },
         // { text: 'Organize the workspace', isCompleted: false },
         // { text: 'Attend the conference', isCompleted: false },
