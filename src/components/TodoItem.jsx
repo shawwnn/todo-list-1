@@ -7,13 +7,13 @@ const TodoItem = ({ task, onDeleteTask, onEditTask, onToggleCompletion }) => {
     e.stopPropagation()
     setIsFadingOut(true)
     setTimeout(() => {
-      onDeleteTask(task.id)
+      onDeleteTask(task._id)
     }, 155)
   }
 
   const handleEditTask = (e) => {
     if(e.target.type === 'checkbox' || e.target.tagName === 'BUTTON')  return
-    onEditTask(task.id)
+    onEditTask(task._id)
   }
 
   return (
@@ -27,7 +27,7 @@ const TodoItem = ({ task, onDeleteTask, onEditTask, onToggleCompletion }) => {
         checked={task.isCompleted}
         onChange={(e) => {
           e.stopPropagation()
-          onToggleCompletion(task.id)}}
+          onToggleCompletion(task._id)}}
         />
       <span>{task.text}</span>
       <button 

@@ -17,11 +17,10 @@ const TodoFilter = ({ selectedFilter, setSelectedFilter}) => {
 			<button className="filter-button" onClick={toggleFilterDropdown}>
 				{selectedFilter} <span className="arrow">
 					{isFilterOpen ?
-						<i class="fa fa-caret-up" aria-hidden="true"></i> :
-						<i class="fa fa-caret-down" aria-hidden="true"></i>
+						<i className="fa fa-caret-up" aria-hidden="true"></i> :
+						<i className="fa fa-caret-down" aria-hidden="true"></i>
 					}
 				</span>
-				
 			</button>
 			{isFilterOpen && (
 				<ul className="filter-menu">
