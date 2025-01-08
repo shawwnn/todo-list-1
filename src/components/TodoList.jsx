@@ -42,7 +42,7 @@ const TodoList = ({ tasks, onDeleteTask, onEditTask, searchQuery, selectedFilter
       ) : (
         <ul className="task-list">
           {filteredTasks.map((task) => (
-            <TodoItem key={task.id} task={task} 
+            <TodoItem key={task._id} task={task} 
               onDeleteTask={onDeleteTask} 
               onEditTask={onEditTask}
               onToggleCompletion={onToggleCompletion}

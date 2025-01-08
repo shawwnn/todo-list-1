@@ -14,7 +14,7 @@ const AddEditTodoModal = ({ isOpen, setIsOpen, task, onSave, editingTaskId }) =>
 			onSave(null, text);
 		} else {
 			// Proceed with saving the task
-			onSave(task.id, text)
+			onSave(task._id, text)
 		}
 	}
 
