@@ -79,6 +79,24 @@ app.put('/tasks/:id', async (req, res) => {
 	res.json(updatedTask)
 })
 
+app.patch('/tasks/:id', async (req, res) => {
+  try {
+    const taskId = req.params.id
+    const task = await Task.findByIdAndUpdate(
+      taskId,
+      { $set: { isCompleted: req.body.isCompleted } }, // Set the new isCompleted status
+      { new: true } // Return the updated task
+    )
+    if (!task) {
+      return res.status(404).json({ error: "Task not found" })
+    }
+    res.json(task)
+  } catch (error) {
+    console.error('Error updating task:', error)
+    res.status(500).json({ error: "Failed to update task" })
+  }
+})
+
 app.delete('/tasks/:id', async (req, res) => {
 	await Task.findByIdAndDelete(req.params.id)
 	res.json({ message: 'Task Deleted' })

@@ -110,12 +110,42 @@ function App() {
     // setTaskText('')
   }
 
-  const toggleCompletion = (taskId) => {
-    const updatedTasks = tasks.map((task) => 
-      task._id === taskId ? {...task, isCompleted: !task.isCompleted } : task
-    )
-    setTasks(updatedTasks)
-    // setTaskText('')
+  const toggleCompletion = async (taskId) => {
+    // const updatedTasks = tasks.map((task) => 
+    //   task._id === taskId ? {...task, isCompleted: !task.isCompleted } : task
+    // )
+    // setTasks(updatedTasks)
+    // // setTaskText('')
+    
+    try {
+      // Find the task in the local state
+      const taskToUpdate = tasks.find((task) => task._id === taskId)
+
+      if (!taskToUpdate) {
+        console.error("Task not found");
+        return;
+      }
+
+      const updatedStatus =!taskToUpdate.isCompleted
+
+      // Send a PATCH request to the backend to update the task completion status
+      const response = await axios.patch(`http://localhost:3000/tasks/${taskId}`, {
+        isCompleted: updatedStatus
+      })
+
+      // Only update the local state with the updated status
+      if ( response.status === 200) {
+        const updatedTasks = tasks.map((task) => 
+          task._id === taskId ? { ...task, isCompleted: updatedStatus } : task 
+        )
+        setTasks(updatedTasks)
+      } else {
+        console.error("Failed to update task completion")
+      }
+
+    } catch (error) {
+      console.error("Error updating task completion", error)
+    }
   }
 
   return (
