@@ -6,6 +6,7 @@ const AddEditTodoModal = ({ isOpen, setIsOpen, task, onSave, editingTaskId }) =>
 
 	const handleClose = () => {
 		setIsOpen(false)
+		setText('')
 	}
 
 	const handleSave = () => {
@@ -19,9 +20,11 @@ const AddEditTodoModal = ({ isOpen, setIsOpen, task, onSave, editingTaskId }) =>
 	}
 
   useEffect(() => {
-    if (task) {
+    if (task && task.text) {
       setText(task.text);  
-		}
+	} else {
+		setText(''); // Clear the text when no task is selected (adding a new task)
+	  }
   }, [task]);
  
   return (
