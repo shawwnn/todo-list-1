@@ -36,9 +36,7 @@ const Task = db.model('Task', taskSchema);  // Define the model for tasks collec
 // API Routes
 app.get('/tasks', async (req, res) => {
   try {
-    console.log('GET /tasks route triggered');
     const tasks = await Task.find();
-    console.log('Fetched tasks:', tasks);
     res.json(tasks);
   } catch (error) {
     console.error('Error fetching tasks:', error);
@@ -98,9 +96,17 @@ app.patch('/tasks/:id', async (req, res) => {
 })
 
 app.delete('/tasks/:id', async (req, res) => {
-	await Task.findByIdAndDelete(req.params.id)
-	res.json({ message: 'Task Deleted' })
-})
+  try {
+    const { id } = req.params;
+    console.log(`Deleting task with ID: ${id}`); // Debugging log
+    await Task.findByIdAndDelete(id);
+    res.status(200).json({ message: 'Task deleted' });
+  } catch (error) {
+    console.error('Error deleting task:', error);
+    res.status(500).json({ message: 'Error deleting task' });
+  }
+});
+
 
 // Start Server
 app.listen(PORT, () => {

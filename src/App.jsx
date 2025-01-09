@@ -93,11 +93,27 @@ function App() {
     setIsModalOpen(false)
   }
   
-  const deleteTask = (taskId) => {
-    const remainingTasks = tasks.filter((task) => task._id !== taskId) 
-    setTasks(remainingTasks)
-    // setTaskText('')
-    setSearchQuery('')
+  const deleteTask = async (taskId) => {
+    // const remainingTasks = tasks.filter((task) => task._id !== taskId) 
+    // setTasks(remainingTasks)
+    // // setTaskText('')
+    // setSearchQuery('')
+
+    try {
+      // Send a DELETE request to the backend to delete the task
+      const response = await axios.delete(`http://localhost:3000/tasks/${taskId}`)
+
+      if (response.status === 200) {
+        // Task was deleted successfully, now update the local state
+        const remainingTasks = tasks.filter((task) => task._id !== taskId)
+        setTasks(remainingTasks)
+        console.log('Task successfully deleted');
+      } else {
+        console.error('Error deleting task, unexpected response status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error deleting task:', error)
+    }
   }
 
   const searchChange = (e) => {
