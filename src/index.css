@@ -227,3 +227,19 @@ button:disabled {
   font-size: 36px;
   color: #666;
 }
+
+
+/* Toastify Custom Styles */
+.Toastify__toast-container .Toastify__toast {
+  white-space: pre-wrap;
+}
+
+.Toastify__toast-container .toast-title {
+  font-weight: bold; /* Makes the title bolder */
+  font-size: 1.1em; /* Optional: make the title a bit bigger */
+  color: #333; /* Optional: adjust color to make the title stand out */
+}
+
+.toast-content-container .toast-title {
+  line-height: 1.6; /* Set line-height for toast-title */
+}
