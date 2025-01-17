@@ -7,6 +7,7 @@ import TodoFilter from "./components/TodoFilter"
 import axios from "axios"
 import { toast, ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
+import ToastContent from "./components/ToastContent"
 
 function App() {
   const [tasks, setTasks] = useState([])
@@ -17,7 +18,11 @@ function App() {
 
   useEffect(() => {
     fetchLatestGitCommit().then((message) => {
+<<<<<<< HEAD
       showToast(message);  // Display toast with latest commit message
+=======
+      showToast('Change Logs', message);  // Display toast with latest commit message
+>>>>>>> 8dd22da (fix: Resolve API fetch issue and prevent duplicate toasts)
     });
 
     axios.get('http://localhost:3000/tasks')
@@ -192,12 +197,13 @@ function App() {
   };
     
   // Show the toast notification when the app loads
-  const showToast = (message) => {
-    toast(message, {
-      position: "top-right",   // Toast position
-      autoClose: 5000,         // Duration (5 seconds)
-      hideProgressBar: true,   // Hides progress bar
-      closeOnClick: true,      // Allows closing by clicking
+  const showToast = (title, message, type = "info") => {
+    toast[type](<ToastContent title={title} subtitle={message} />, {
+      position: "top-right",    // Toast position
+      autoClose: 9000,          // Duration (5 seconds)
+      hideProgressBar: true,    // Hides progress bar
+      closeOnClick: true,       // Allows closing by clicking
+      className: "custom-toast",
     });
   };
 
