@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require ('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const axios = require('axios');
 require('dotenv').config()
 
 // App Initialization
@@ -104,6 +105,39 @@ app.delete('/tasks/:id', async (req, res) => {
   } catch (error) {
     console.error('Error deleting task:', error);
     res.status(500).json({ message: 'Error deleting task' });
+  }
+});
+
+// app.get('/api/latest-commit', async (req, res) => {
+//   try {
+//     // Fetch the latest commit using GitHub API (replace with your repo details)
+//     const response = await axios.get('https://api.github.com/repos/shawwnn/todo-list-1/commits');
+//     const commits = response.data;
+//     const latestCommit = commits[0];  // Get the most recent commit
+//     res.json({ message: latestCommit.commit.message });
+//   } catch (error) {
+//     console.error('Error fetching commit', error);
+//     res.status(500).json({ message: 'Error fetching commit data' });
+//   }
+// });
+
+app.get('/api/latest-commit', async (req, res) => {
+  try {
+    const response = await axios.get('https://api.github.com/repos/shawwnn/todo-list-1/commits');
+    const commits = await response.data;
+    // console.log('GitHub API Response:', response.status, response.data);
+    // console.log(response)
+    
+    if (commits.length === 0) {
+      return res.status(404).json({ message: 'No commits found' });
+    }
+
+    const latestCommit = commits[0];  // Get the most recent commit
+    res.json({ message: latestCommit.commit.message });
+  } catch (error) {
+    console.error('Error fetching commit:', error);
+    console.error('Full error details:', error.response ? error.response.data : error.message);  // Log the response details
+    res.status(500).json({ message: `Error fetching commit data: ${error.message}`, error: error.response?.data || error });
   }
 });
 

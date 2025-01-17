@@ -5,6 +5,8 @@ import TodoSearch from "./components/TodoSearch"
 import AddEditTodoModal from "./components/AddEditTodoModal"
 import TodoFilter from "./components/TodoFilter"
 import axios from "axios"
+import { toast, ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css"
 
 function App() {
   const [tasks, setTasks] = useState([])
@@ -14,6 +16,10 @@ function App() {
   const [selectedFilter, setSelectedFilter] = useState('All')
 
   useEffect(() => {
+    fetchLatestGitCommit().then((message) => {
+      showToast(message);  // Display toast with latest commit message
+    });
+
     axios.get('http://localhost:3000/tasks')
       .then((response) => {
         setTasks(response.data)
@@ -164,9 +170,41 @@ function App() {
     }
   }
 
+  // const fetchLatestGitCommit = async () => {
+  //   try {
+  //     const response = await fetch('/api/latest-commit');  // Make sure your backend provides this
+  //     const commit = await response.json();
+  //     return commit.message;
+  //   } catch (error) {
+  //     console.error('Failed to fetch latest commit', error);
+  //     return 'No updates available.';
+  //   }
+  // };
+
+  const fetchLatestGitCommit = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/api/latest-commit'); // Replace with your API endpoint
+      return response.data.message; // Assuming the API returns { message: "commit message" }
+    } catch (error) {
+      console.error('Error fetching latest Git commit:', error);
+      return 'No updates available.';
+    }
+  };
+    
+  // Show the toast notification when the app loads
+  const showToast = (message) => {
+    toast(message, {
+      position: "top-right",   // Toast position
+      autoClose: 5000,         // Duration (5 seconds)
+      hideProgressBar: true,   // Hides progress bar
+      closeOnClick: true,      // Allows closing by clicking
+    });
+  };
+
   return (
     <div className="todo-container">
       <Header />
+      <ToastContainer />
       <TodoFilter selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter}/>
       <TodoSearch 
         searchQuery={searchQuery} 
