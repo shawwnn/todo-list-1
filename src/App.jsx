@@ -7,10 +7,7 @@ import TodoFilter from "./components/TodoFilter"
 import axios from "axios"
 import { toast, ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
-<<<<<<< HEAD
-=======
 import ToastContent from "./components/ToastContent"
->>>>>>> 8dd22da (fix: Resolve API fetch issue and prevent duplicate toasts)
 
 function App() {
   const [tasks, setTasks] = useState([])
@@ -21,11 +18,7 @@ function App() {
 
   useEffect(() => {
     fetchLatestGitCommit().then((message) => {
-<<<<<<< HEAD
-      showToast(message);  // Display toast with latest commit message
-=======
       showToast('Change Logs', message);  // Display toast with latest commit message
->>>>>>> 8dd22da (fix: Resolve API fetch issue and prevent duplicate toasts)
     });
 
     axios.get('http://localhost:3000/tasks')
