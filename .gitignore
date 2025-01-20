@@ -22,6 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.vite
 
 # Ignore backend .env file
 backend/.env
