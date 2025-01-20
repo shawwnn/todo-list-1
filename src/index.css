@@ -1,0 +1,245 @@
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Body: Dark ChatGPT-like background */
+body {
+  background-color: #343541; /* ChatGPT dark gray */
+  color: #ffffff; /* White text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* To-Do Container */
+.todo-container {
+  background-color: #444654; /* Slightly lighter dark gray */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  width: 360px;
+  padding: 20px;
+  margin: relative;
+}
+
+/* Header */
+.todo-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.todo-header h1 {
+  color: #ffffff; /* White text */
+  font-size: 1.8em;
+}
+
+/* Task List */
+.task-list {
+  list-style: none;
+  margin-top: 15px;
+}
+
+.task-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4e4f53; /* Slightly lighter gray */
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #565869;
+}
+
+.task-list li span {
+  flex-grow: 1;
+  color: #ffffff; /* White text */
+}
+
+.task-list button {
+  background: none;
+  border: none;
+  color: #f44336; /* Red delete button */
+  font-size: 1em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.task-list button:hover {
+  color: #c62828; /* Darker red on hover */
+}
+
+.task-item {
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+.task-item.fading-out {
+  transform: scale(0.9);
+  opacity: 0;
+}
+
+/* Style for the checkbox */
+.task-item input[type="checkbox"] {
+  margin-right: 10px;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  accent-color: #4caf50; /* Green accent for checkbox */
+}
+
+button:disabled {
+  /*background-color: #a0a0a0; /* Greyed-out color */
+  /*cursor: not-allowed; /* Show the 'not-allowed' cursor */
+  opacity: 0.6; /* Make it slightly transparent */
+  pointer-events: none; /* Disable all pointer events, including hover */
+}
+
+/* Style when the task is completed */
+.task-item.completed {
+  /*text-decoration: line-through; /* Strikethrough */
+  color: #888; /* Dim the text color */
+  background-color: #3c3d40; /* Lighter background for completed tasks */
+  opacity:0.4
+}
+
+/* Search Bar 12/15/2025 */ 
+.search-container {
+  width: 100%; /* Full width of the container */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between elements */
+  background-color: #565869; /* Same background color as the input */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Padding around the content */
+  margin-bottom: 20px;
+  border: 2px solid #565869; /* Border color same as the input */
+  height: 45px; /* Same height as TodoInput */
+}
+
+/* Search Input */
+/* Search Bar */
+.search-container {
+  width: 100%; /* Full width of the container */
+  display: flex;
+  align-items: center;
+  gap: 10px; Space between elements */
+  background-color: #565869; /* Same background color as the input */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Padding around the content */
+  margin-bottom: 20px;
+  border: 2px solid #565869; /* Border color same as the input */
+  height: 45px; /* Same height as TodoInput */
+}
+
+/* Search Input */
+.search-container input {
+  flex-grow: 1; /* Take all available space */
+  /* padding: 10px; */
+  border: 2px solid #565869; /* Gray border */
+  background-color: #565869; /* Same gray background as TodoInput */
+  color: #ffffff; /* White text */
+  border-radius: 5px; /* Rounded corners */
+  outline: none;
+  font-size: 1em; /* Same font size as TodoInput */
+  height: 100%; /* Fill the height of the container */
+}
+
+/* Placeholder text style */
+.search-container input::placeholder {
+  color: #b3b3b3; /* Light gray placeholder */
+}
+
+/* Input field focus state */
+.search-container input:focus {
+  /* border-color: #0da37f; /* Green color when focused */
+}
+
+/* Search icon */
+.search-container .search-icon {
+  color: #b3b3b3; /* Light gray search icon */
+  font-size: 1.2em; /* Slightly larger than the input font size */
+}
+
+/* Cancel (X) button */
+.search-container button {
+  background-color: #b3b3b3; /* Lighter background for the cancel button */
+  border-radius: 50%; /* Circular button */
+  padding: 5px;
+  font-size: 1.2em; /* Make the '×' button larger */
+  color: #343541; /* Dark color for better contrast */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  height: 30px; /* Fixed height to match button size */
+  width: 30px; /* Fixed width for circular button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Cancel button hover effect */
+.search-container button:hover {
+  background-color: #888888; /* Slightly darker on hover */
+}
+
+/* Icon inside the button */
+.search-container button:focus {
+  outline: none;
+}
+
+/* todo plus modal button */ 
+.todo-plus-button {
+  position: absolute;
+  bottom: 3%;
+  right: 10%;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-task-container {
+  display: flex;
+  justify-content: center;
+  /* margin: 20px 0; */
+  position: relative;
+}
+
+.todo-plus-button:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.todo-plus-button i {
+  font-size: 36px;
+  color: #666;
+}
+
+
+/* Toastify Custom Styles */
+.Toastify__toast-container .Toastify__toast {
+  white-space: pre-wrap;
+}
+
+.Toastify__toast-container .toast-title {
+  font-weight: bold; /* Makes the title bolder */
+  font-size: 1.1em; /* Optional: make the title a bit bigger */
+  color: #333; /* Optional: adjust color to make the title stand out */
+}
+
+.toast-content-container .toast-title {
+  line-height: 1.6; /* Set line-height for toast-title */
+}
